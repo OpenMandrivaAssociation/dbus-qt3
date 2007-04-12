@@ -1,0 +1,84 @@
+%define dbus_version		0.90
+%define qt_version              3.1.0
+%define qt_dir			%{_prefix}/lib/qt3
+
+%define lib_api 1
+%define lib_qt_major 1
+%define lib_qt %mklibname dbus-qt- %{lib_api} %{lib_qt_major}
+
+Summary: D-BUS message bus
+Name: dbus-qt3
+Version: 0.70
+Release: %mkrel 1
+URL: http://www.freedesktop.org/Software/dbus
+Source0: %{name}-%{version}.tar.bz2
+
+License: AFL/GPL
+Group: System/Servers
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRequires: qt3-devel    >= %{qt_version}
+BuildRequires: dbus-devel >= %{dbus_version}
+
+%package -n %{lib_qt}
+Summary: Qt-based library for using D-BUS
+Group: System/Libraries
+Obsoletes: %{_lib}dbus-qt-1_0 < 0.62-2mdv2007.0
+
+%description -n %{lib_qt}
+D-BUS add-on library to integrate the standard D-BUS library with
+the Qt thread abstraction and main loop.
+
+%package -n %{lib_qt}-devel
+Summary: Qt-based library for using D-BUS
+Group: Development/C++
+Requires: %{lib_qt} = %version
+Provides: libdbus-qt-1-devel = %version-%release
+
+%description -n %{lib_qt}-devel
+D-BUS add-on library to integrate the standard D-BUS library with the
+Qt thread abstraction and main loop. This contains the Qt specific
+headers and libraries.
+
+%description
+D-BUS add-on library to integrate the standard D-BUS library with
+the Qt thread abstraction and main loop.
+
+%prep
+%setup -q 
+
+%build
+#gw so we can find moc
+export PATH=%qt_dir/bin:$PATH
+export QTDIR=%qt_dir
+
+%configure2_5x --enable-qt3
+%make
+
+%install
+rm -rf %{buildroot}
+
+%makeinstall_std
+
+#remove unpackaged file
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
+%clean
+rm -rf %{buildroot}
+
+%post -n %{lib_qt} -p /sbin/ldconfig
+%postun -n %{lib_qt} -p /sbin/ldconfig
+
+%files -n %{lib_qt}
+%defattr(-,root,root)
+%{_libdir}/*qt*.so.%{lib_qt_major}*
+
+%files -n %{lib_qt}-devel
+%defattr(-,root,root)
+%{_libdir}/*qt*.so
+%{_libdir}/*qt*.a
+%{_includedir}/dbus-1.0/dbus/dbus-qt.h
+%{_includedir}/dbus-1.0/dbus/connection.h
+%{_includedir}/dbus-1.0/dbus/message.h
+%{_includedir}/dbus-1.0/dbus/server.h
+
+
