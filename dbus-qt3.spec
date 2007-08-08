@@ -5,11 +5,12 @@
 %define lib_api 1
 %define lib_qt_major 1
 %define lib_qt %mklibname dbus-qt- %{lib_api} %{lib_qt_major}
+%define devel_qt %mklibname dbus-qt -d
 
 Summary: D-BUS message bus
 Name: dbus-qt3
 Version: 0.70
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://www.freedesktop.org/Software/dbus
 Source0: %{name}-%{version}.tar.bz2
 
@@ -28,13 +29,15 @@ Obsoletes: %{_lib}dbus-qt-1_0 < 0.62-2mdv2007.0
 D-BUS add-on library to integrate the standard D-BUS library with
 the Qt thread abstraction and main loop.
 
-%package -n %{lib_qt}-devel
+%package -n %{devel_qt}
 Summary: Qt-based library for using D-BUS
 Group: Development/C++
-Requires: %{lib_qt} = %version
-Provides: libdbus-qt-1-devel = %version-%release
+Requires: %{lib_qt} = %{version}-%{release}
+Provides: libdbus-qt-1-devel = %{version}-%{release}
+Obsoletes: %mklibname dbus-qt- %{lib_api} %{lib_qt_major} -d
+Provides: %mklibname dbus-qt- %{lib_api} %{lib_qt_major} -d
 
-%description -n %{lib_qt}-devel
+%description -n %{devel_qt}
 D-BUS add-on library to integrate the standard D-BUS library with the
 Qt thread abstraction and main loop. This contains the Qt specific
 headers and libraries.
@@ -60,7 +63,7 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 #remove unpackaged file
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/*.la
 
 %clean
 rm -rf %{buildroot}
@@ -72,7 +75,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/*qt*.so.%{lib_qt_major}*
 
-%files -n %{lib_qt}-devel
+%files -n %{devel_qt}
 %defattr(-,root,root)
 %{_libdir}/*qt*.so
 %{_libdir}/*qt*.a
@@ -80,5 +83,3 @@ rm -rf %{buildroot}
 %{_includedir}/dbus-1.0/dbus/connection.h
 %{_includedir}/dbus-1.0/dbus/message.h
 %{_includedir}/dbus-1.0/dbus/server.h
-
-
