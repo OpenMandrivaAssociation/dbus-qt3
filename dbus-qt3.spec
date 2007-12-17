@@ -16,7 +16,6 @@ Source0: %{name}-%{version}.tar.bz2
 
 License: AFL/GPL
 Group: System/Servers
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: qt3-devel    >= %{qt_version}
 BuildRequires: dbus-devel >= %{dbus_version}
 
