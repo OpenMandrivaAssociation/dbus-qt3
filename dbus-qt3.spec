@@ -13,6 +13,7 @@ Version: 0.70
 Release: %mkrel 5
 URL: http://www.freedesktop.org/Software/dbus
 Source0: %{name}-%{version}.tar.bz2
+Patch0:	dbus-qt3-underlinking.patch
 
 License: AFL/GPL
 Group: System/Servers
@@ -48,8 +49,12 @@ the Qt thread abstraction and main loop.
 
 %prep
 %setup -q 
+%patch0 -p1
 
 %build
+# patch0
+autoreconf -fi
+
 #gw so we can find moc
 export PATH=%qt_dir/bin:$PATH
 export QTDIR=%qt_dir
