@@ -1,0 +1,17 @@
+Index: dbus-qt3-0.70/configure.in
+===================================================================
+--- dbus-qt3-0.70/configure.in
++++ dbus-qt3-0.70/configure.in	2009-03-15 17:30:23.000000000 +0200
+@@ -251,11 +251,11 @@
+         if test -f "$dir/qglobal.h"; then
+             have_qt3=yes
+             DBUS_QT3_CXXFLAGS="-I$dir"
+-            DBUS_QT3_LIBS="-L$QTDIR/lib -lqt-mt"
+        fi
+     done
+ fi
+ if test x$have_qt3 = xyes; then
++   DBUS_QT3_LIBS="-L$QTDIR/lib -lqt-mt"
+    AC_MSG_RESULT([found])
+ else
+    AC_MSG_RESULT([not found])
