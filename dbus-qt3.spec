@@ -10,7 +10,7 @@
 Summary: D-BUS message bus
 Name: dbus-qt3
 Version: 0.70
-Release: %mkrel 8
+Release: %mkrel 9
 URL: http://www.freedesktop.org/Software/dbus
 Source0: %{name}-%{version}.tar.bz2
 Patch0:	dbus-qt3-underlinking.patch
@@ -92,3 +92,50 @@ rm -rf %{buildroot}
 %{_includedir}/dbus-1.0/dbus/connection.h
 %{_includedir}/dbus-1.0/dbus/message.h
 %{_includedir}/dbus-1.0/dbus/server.h
+
+
+%changelog
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 0.70-8mdv2011.0
++ Revision: 663759
+- mass rebuild
+
+* Thu Dec 02 2010 Oden Eriksson <oeriksson@mandriva.com> 0.70-7mdv2011.0
++ Revision: 604781
+- rebuild
+
+* Sun Mar 15 2009 Anssi Hannula <anssi@mandriva.org> 0.70-6mdv2010.1
++ Revision: 355363
+- fix underlinking (underlinking.patch)
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Fri Jan 18 2008 Paulo Andrade <pcpa@mandriva.com.br> 0.70-4mdv2008.1
++ Revision: 154677
+- Bump release for rebuild.
+
+* Fri Jan 11 2008 Thierry Vignaud <tv@mandriva.org> 0.70-3mdv2008.1
++ Revision: 149166
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Wed Aug 08 2007 Tomasz Pawel Gajc <tpg@mandriva.org> 0.70-2mdv2008.0
++ Revision: 60163
+- rebuild
+- new devel library policy
+
+
+* Mon Mar 12 2007 Frederic Crozat <fcrozat@mandriva.com> 0.70-1mdv2007.1
++ Revision: 141612
+- Add Obsoletes to ease upgrade from 2006.0
+- Import dbus-qt3
+
+* Tue Aug 01 2006 Frederic Crozat <fcrozat@mandriva.com> 0.70-1mdv2007.0
+- Initial package (splitted from dbus 0.62)
+
