@@ -1,0 +1,11 @@
+--- dbus-qt3-0.70/configure.in.bero	2013-01-15 19:31:21.634905099 +0100
++++ dbus-qt3-0.70/configure.in	2013-01-15 19:31:27.248838050 +0100
+@@ -7,7 +7,7 @@ AC_CANONICAL_TARGET
+ 
+ AM_INIT_AUTOMAKE(dbus-qt3, 0.70)
+ 
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS([config.h])
+ 
+ # Honor aclocal flags
+ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"

@@ -14,10 +14,10 @@ Release: %mkrel 9
 URL: http://www.freedesktop.org/Software/dbus
 Source0: %{name}-%{version}.tar.bz2
 Patch0:	dbus-qt3-underlinking.patch
+Patch1:	dbus-qt3-automake-1.13.patch
 
 License: AFL/GPL
 Group: System/Servers
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: qt3-devel    >= %{qt_version}
 BuildRequires: dbus-devel >= %{dbus_version}
 
@@ -49,10 +49,9 @@ the Qt thread abstraction and main loop.
 
 %prep
 %setup -q 
-%patch0 -p1
+%apply_patches
 
 %build
-# patch0
 autoreconf -fi
 
 #gw so we can find moc
