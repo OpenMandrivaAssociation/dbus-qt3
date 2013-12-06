@@ -10,7 +10,7 @@
 Summary: D-BUS message bus
 Name: dbus-qt3
 Version: 0.70
-Release: 10
+Release: 11
 URL: http://www.freedesktop.org/Software/dbus
 Source0: %{name}-%{version}.tar.bz2
 Patch0:	dbus-qt3-underlinking.patch
