@@ -49,7 +49,7 @@ the Qt thread abstraction and main loop.
 
 %prep
 %setup -q 
-%apply_patches
+%autopatch -p1
 
 %build
 autoreconf -fi
