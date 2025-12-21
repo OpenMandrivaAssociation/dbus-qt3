@@ -18,6 +18,11 @@ Patch1:	dbus-qt3-automake-1.13.patch
 
 License: AFL/GPL
 Group: System/Servers
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: qt3-devel    >= %{qt_version}
 BuildRequires: dbus-devel >= %{dbus_version}
 
